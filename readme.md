@@ -1,0 +1,1 @@
+The Linux application has a slightly different interface. For example, there is no "embed" button in the share dialog when sharing a collection. Instead, please see Book Search.postman_collection.json.

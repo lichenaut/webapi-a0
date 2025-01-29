@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "17b90c64-7c69-4120-b1d9-402deb1f3f8a",
+		"name": "Book Search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34573647",
+		"_collection_link": "https://webapi-class.postman.co/workspace/WebAPI-Class-Workspace~d8798cd7-e423-4c08-8ffe-c8abcb23c2a7/collection/34573647-17b90c64-7c69-4120-b1d9-402deb1f3f8a?action=share&source=collection_link&creator=34573647"
+	},
+	"item": [
+		{
+			"name": "Book Search",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Book title or description includes Turing\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    for (var i = 0; i < jsonData.items.length; i++) {",
+							"        if (/(turing)/i.test(jsonData.items[i].volumeInfo.title) || /(turing)/i.test(jsonData.items[i].volumeInfo.description)) {",
+							"            pm.environment.set(\"book_id\", jsonData.items[i].id);",
+							"            break;",
+							"        }",
+							"    }",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.googleapis.com/books/v1/volumes?q={{book_title}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"books",
+						"v1",
+						"volumes"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{book_title}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request Chaining",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Book title or description includes Turing\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    if (jsonData.volumeInfo && (/(turing)/i.test(jsonData.volumeInfo.title) || /(turing)/i.test(jsonData.volumeInfo.description))) {",
+							"        pm.environment.set(\"book_id\", jsonData.id);",
+							"    }",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.googleapis.com/books/v1/volumes/{{book_id}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"books",
+						"v1",
+						"volumes",
+						"{{book_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

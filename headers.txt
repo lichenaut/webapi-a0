@@ -1,0 +1,12 @@
+Vary, Origin: Response varies based on origin request header.
+Vary, X-Origin: Caching proxies should use X-Origin when computing response.
+Vary, Referer: Response varies based on referer request header.
+Content-Type, application/json; charset=UTF-8: Specifies response format.
+Content-Encoding, gzip: Names compresison algorithm.
+Date, Wed, 29 Jan 2025 23:14:59 GMT: Specifies date/time.
+Server, ESF: Server software is type "Edge Server Frontend".
+X-XSS-Protection, 0: Disables XSS filtering.
+X-Frame-Options, SAMEORIGIN: Prevents page from being embedded in an iframe unless from the same origin.
+X-Content-Type-Options, nosniff: Tells browsers to use Content-Type for content-typing only.
+Alt-Svc, h3=":443"; ma=2592000,h3-29=":443"; ma=2592000: Specifies HTTP/3 support.
+Transfer-Encoding, chunked: Specifies that the response is sent in chunks, not all at once.
