@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 module.exports = async (phrase) => {
-  const results = await axios.get(
+  const response = await axios.get(
     "https://www.googleapis.com/books/v1/volumes",
     {
       params: {
@@ -22,5 +22,5 @@ module.exports = async (phrase) => {
   };
 
   //TODO: return the formattedObject
-  return JSON.stringify(results.data);
+  return JSON.stringify(formattedObj);
 };
